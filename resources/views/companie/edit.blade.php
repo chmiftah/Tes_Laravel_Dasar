@@ -17,7 +17,12 @@
                         <form action="{{ route('companie.update', $companie) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             @method('put')
-                            <img src="{{asset('storage/'.$companie->logo)}}"/>
+                            @if ($companie->logo)
+                            <img src="{{asset('storage/'.$companie->logo)}}" width="500"/>
+                            @else 
+                             <img src="https://cdn.logo.com/hotlink-ok/logo-social.png" alt="" width="500">
+                            @endif
+                            
 
                             @include('companie._form',[
                                 'submit'=>'Update'

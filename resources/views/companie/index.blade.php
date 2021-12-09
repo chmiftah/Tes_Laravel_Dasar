@@ -48,16 +48,18 @@
                                     <td>{{ $companie->count() * ($companie->currentPage() - 1) + $loop->iteration }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->email }}</td>
-                                    <td>{{ $item->website}}</td>
-                                    <td><img width="100" src="{{asset('storage/'.$item->logo)}}"/></td>
+                                    <td>{{ $item->website }}</td>
+                                    <td>
+                                        @if ($item->logo)
+                                            <img src="{{ asset('storage/' . $item->logo) }}" width="100" />
+                                        @else
+                                            <img src="https://cdn.logo.com/hotlink-ok/logo-social.png" alt="" width="100">
+                                        @endif
+                                    </td>
                                     <td>
                                         <div class="d-flex">
                                             <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Edit"
                                                 href="{{ route('companie.edit', $item->id) }}">Edit</a>
-
-                                                <a class="btn btn-info btn-action mr-1" data-toggle="tooltip" title="Edit"
-                                                href="{{ route('companie.show', $item->id) }}">view</a>
-
 
 
                                             <form action="{{ route('companie.destroy', $item->id) }}" method="post">
@@ -69,6 +71,10 @@
                                                     onclick="confirm('are you sure want delete')">Delete</button>
 
                                             </form>
+
+                                            <a class="btn btn-secondary btn-action ml-1" data-toggle="tooltip" title="Edit"
+                                                href="{{ route('companie.show', $item->id) }}">view Employee</a>
+
                                         </div>
                                     </td>
                                 </tr>
